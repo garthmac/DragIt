@@ -116,6 +116,7 @@ class BouncerViewController: UIViewController {
         super.viewDidLoad()
         addVideo()
         animator.addBehavior(bouncer)
+        view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "unwindToMainViewController:"))  //new
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -213,7 +214,7 @@ class BouncerViewController: UIViewController {
         print("Button tapped")
         self.performSegueWithIdentifier(Constants.Credits, sender: sender)
     }
-    @IBAction func unwindToMainViewController (sender: UIStoryboardSegue){
+    @IBAction func unwindToMainViewController(sender: UIStoryboardSegue){
         // bug? exit segue doesn't dismiss so we do it manually...
         self.dismissViewControllerAnimated(true, completion: nil)
     }

@@ -1,4 +1,4 @@
-# Drag It (alias RedBlock Fav Video Portal)
+# Drag It (alias RedBlock Video Portal)
 
 uses MPMoviePlayerController for 9 videos locally in Landscape only
     - Application does not run in background
@@ -6,6 +6,8 @@ uses Settings.bundle
     - for FavVideo vs. Random selection
     - optional continuous playback 
     - optional random colored block vs alpha red
+
+Drag RedBlock into center to play selected video!
 
 Xcode 7 
 

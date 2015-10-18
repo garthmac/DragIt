@@ -53,6 +53,8 @@
 		7163374A1BD0B88500520A29 /* Phil Wickham - This Is Amazing Grace.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7163370F1BD06B5B00520A29 /* Phil Wickham - This Is Amazing Grace.mp4 */; };
 		7163374B1BD0B88500520A29 /* Hillsong UNITED - Oceans [Passion 2014].mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 716337101BD06B5B00520A29 /* Hillsong UNITED - Oceans [Passion 2014].mp4 */; };
 		7163374C1BD0B88500520A29 /* Amazing_Grace_My_Chains_are_Gone_-_Chris_Tomlin_wi.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 716337111BD06B5B00520A29 /* Amazing_Grace_My_Chains_are_Gone_-_Chris_Tomlin_wi.mp4 */; };
+		7163374E1BD1B1C200520A29 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7163374D1BD1B1C200520A29 /* CircleView.swift */; settings = {ASSET_TAGS = (); }; };
+		716337501BD3670300520A29 /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7163374F1BD3670300520A29 /* arrow_up.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,8 @@
 		716337271BD06B9000520A29 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		716337281BD06B9000520A29 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
 		7163373E1BD072DB00520A29 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		7163374D1BD1B1C200520A29 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		7163374F1BD3670300520A29 /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,7 @@
 				716337041BD06AF400520A29 /* BouncerBehavior.swift */,
 				716337051BD06AF400520A29 /* BouncerViewController.swift */,
 				716336FC1BD04BCB00520A29 /* DragItViewController.swift */,
+				7163374D1BD1B1C200520A29 /* CircleView.swift */,
 				716336CB1BD0438600520A29 /* Main.storyboard */,
 				716336CE1BD0438600520A29 /* Assets.xcassets */,
 				716336D01BD0438600520A29 /* LaunchScreen.storyboard */,
@@ -272,6 +277,7 @@
 				716336F61BD0450A00520A29 /* arrow_down.png */,
 				716336F71BD0450A00520A29 /* arrow_down@2x.png */,
 				716336F81BD0450A00520A29 /* arrow_down@3x.png */,
+				7163374F1BD3670300520A29 /* arrow_up.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				716337011BD06ACC00520A29 /* LICENSE in Resources */,
 				7163373B1BD06B9000520A29 /* Icon-76.png in Resources */,
 				716337371BD06B9000520A29 /* Icon-86@2x.png in Resources */,
+				716337501BD3670300520A29 /* arrow_up.png in Resources */,
 				716336CD1BD0438600520A29 /* Main.storyboard in Resources */,
 				716337351BD06B9000520A29 /* Icon-60@2x.png in Resources */,
 				716337381BD06B9000520A29 /* Icon-98@2x.png in Resources */,
@@ -443,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7163374E1BD1B1C200520A29 /* CircleView.swift in Sources */,
 				716336FD1BD04BCB00520A29 /* DragItViewController.swift in Sources */,
 				716336CA1BD0438600520A29 /* ViewController.swift in Sources */,
 				716337061BD06AF400520A29 /* BouncerBehavior.swift in Sources */,
@@ -591,6 +599,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DragIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.garthmackenzie.DragIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -603,6 +612,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DragIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.garthmackenzie.DragIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
