@@ -18,7 +18,6 @@ func radiansToDegrees(radians: Double) -> CGFloat {
 class DragItViewController: UIViewController {
 
     @IBOutlet weak var dragAreaView: UIView!
-    @IBOutlet weak var ringView: UIView!
     @IBOutlet weak var goalView: UIView!
     @IBOutlet weak var dragHereLabel: UILabel!
     @IBOutlet weak var dragView: UIView!
@@ -43,7 +42,7 @@ class DragItViewController: UIViewController {
         let circleWidth = CGFloat(40)   //(25 + (arc4random() % 50))
         let circleHeight = circleWidth
         //start at bottom = 270 degrees
-        let centerPoint = pointOnCircleEdge(ringView.bounds.width/2, angleInDegrees: degrees[index])
+        let centerPoint = pointOnCircleEdge(ringView!.bounds.width/2, angleInDegrees: degrees[index])
         // Create a new CircleView
         let circleView = CircleView(frame: CGRectMake(centerPoint.x - circleWidth/2, centerPoint.y - circleWidth/2, circleWidth, circleHeight))
         circleViewDict[videoTags[index]] = circleView
@@ -68,39 +67,61 @@ class DragItViewController: UIViewController {
     }
     let dragAreaPadding = 5
     var lastBounds = CGRectZero
+    var ringView: UIView?
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.lastBounds = self.view.bounds
-        self.ringView.layer.borderColor = UIColor.greenColor().CGColor                  //new
-        self.ringView.layer.cornerRadius = self.ringView.bounds.size.height / 2         //new
-        self.ringView.layer.borderWidth = 4                                             //new
-        self.dragView.layer.cornerRadius = 10    //self.dragView.bounds.size.height / 2
-        self.goalView.layer.cornerRadius = self.goalView.bounds.size.height / 2
-        self.goalView.layer.borderWidth = 4
-        self.initialDragViewY = self.dragViewYLayoutConstraint.constant
-        self.updateGoalView()
+        lastBounds = self.view.bounds
+        let diameter = min(view.frame.maxX, view.frame.maxY) - 50.0
+        ringView = UIView(frame: CGRect(origin: goalView.center, size: CGSize(width: diameter, height: diameter)))
+        //print(ringView!.frame)
+        ringView!.layer.borderColor = UIColor.greenColor().CGColor       //change to green to see
+        ringView!.layer.cornerRadius = ringView!.bounds.size.width / 2   //new
+        ringView!.layer.borderWidth = 4                                  //new
+        dragView.layer.cornerRadius = 10
+        goalView.layer.cornerRadius = self.goalView.bounds.size.width / 2
+        goalView.layer.borderWidth = 4
+        initialDragViewY = self.dragViewYLayoutConstraint.constant
+        updateGoalView()
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        addBalls()
+    }
+    func addBalls() {
         for idx in 0..<9 {
             addCircleView(idx)
         }
-        print(circleViewDict)
+        //print(circleViewDict)
+    }
+    func removeBalls() {
+        for circle in circleViewDict.values {
+            circle.removeFromSuperview()
+        }
+        for letter in videoTags {
+            circleViewDict[letter] = nil
+        }
+        //print(circleViewDict)
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeBalls()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !CGRectEqualToRect(self.view.bounds, self.lastBounds) {
-            self.boundsChanged()
-            self.lastBounds = self.view.bounds
+            boundsChanged()
+            lastBounds = self.view.bounds
         }
     }
     func boundsChanged() {
-        self.returnToStartLocationAnimated(false)
-        self.dragAreaView.bringSubviewToFront(self.dragView)
-        self.dragAreaView.bringSubviewToFront(self.goalView)
-        self.view.layoutIfNeeded()
-        self.arrowCenterYLayoutConstraint.constant = 0
+        returnToStartLocationAnimated(false)
+        dragAreaView.bringSubviewToFront(dragView)
+        dragAreaView.bringSubviewToFront(goalView)
+        removeBalls()
+        addBalls()
+        view.layoutIfNeeded()
+        arrowCenterYLayoutConstraint.constant = 0
     }
     // MARK: Actions
     @IBAction func panAction() {
@@ -123,14 +144,14 @@ class DragItViewController: UIViewController {
         // tapping a circle toggles its isAlive state...set dragView
         for touch in touches {
             if let _ = touch.view as? CircleView {
-                let point = touch.locationInView(dragAreaView)
+                //print("touch green")
+                let point = touch.locationInView(view)
                 for (key,circle) in circleViewDict {
                     if circle.frame.contains(point) {
                         if videoTag != key {
                             circleViewDict[videoTag]!.animateEraseCircle(2.0)
                             videoTag = key
                             NSUserDefaults.standardUserDefaults().setObject(videoTag, forKey: BouncerViewController.Constants.FavVideo)
-                            //dragView.center = circle.center
                             circle.animateCircle(2.0)
                         }
                     }
@@ -176,10 +197,12 @@ class DragItViewController: UIViewController {
         self.updateGoalView()
     }
     func updateGoalView() {
-        let goalColor = self.isGoalReached ? UIColor.whiteColor() : UIColor(red: 174/255.0, green: 0, blue: 0, alpha: 1)
+        let goalColor = self.isGoalReached ? UIColor.whiteColor() : UIColor.redColor()     //(red: 174/255.0, green: 0, blue: 0, alpha: 1)
         self.goalView.layer.borderColor = goalColor.CGColor
         self.dragHereLabel.textColor = goalColor
         self.dragHereLabel.text = self.isGoalReached ? "Drop!" : "Drag here!"
+        let arrowImage = self.isGoalReached ? nil : UIImage(named: "arrow_down.png")
+        self.arrowImageView.image = arrowImage
     }
     func returnToStartLocationAnimated(animated: Bool) {
         self.dragViewXLayoutConstraint.constant = self.dragView.bounds.size.width

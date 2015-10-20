@@ -211,13 +211,17 @@ class BouncerViewController: UIViewController {
         }
     }
     func creditsAction(sender: UIButton) {
-        print("Button tapped")
+        //print("Button tapped")
         self.performSegueWithIdentifier(Constants.Credits, sender: sender)
     }
     @IBAction func unwindToMainViewController(sender: UIStoryboardSegue){
         // bug? exit segue doesn't dismiss so we do it manually...
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    @IBAction func unwindFromModalViewController(segue: UIStoryboardSegue) {
+        //drag from back button to viewController exit button
+    }
+
 
 }
 

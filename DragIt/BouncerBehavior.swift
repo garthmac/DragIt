@@ -41,10 +41,10 @@ class BouncerBehavior: UIDynamicBehavior {
         lazyCreatedDropBehavior.friction = 0
         lazyCreatedDropBehavior.resistance = 0
         //(should really remove observer...like Trax) see Settings.bundle - Root.plist
-        let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSUserDefaultsDidChangeNotification,
-            object: nil,
-            queue: nil) { (notification) -> Void in
-                lazyCreatedDropBehavior.elasticity = CGFloat(NSUserDefaults.standardUserDefaults().doubleForKey("BouncerBehavior.Elasticity")) }
+//        let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSUserDefaultsDidChangeNotification,
+//            object: nil,
+//            queue: nil) { (notification) -> Void in
+//                lazyCreatedDropBehavior.elasticity = CGFloat(NSUserDefaults.standardUserDefaults().doubleForKey("BouncerBehavior.Elasticity")) }
         return lazyCreatedDropBehavior
         }()
     

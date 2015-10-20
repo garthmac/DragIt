@@ -17,14 +17,13 @@ class CircleView: UIView {
         self.backgroundColor = UIColor.clearColor()
         // Use UIBezierPath as an easy way to create the CGPath for the layer.
         // The path should be the entire circle. //startAngle: 0.0, endAngle: CGFloat(M_PI * 2.0)
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0), radius: (frame.size.width - 10)/2, startAngle: CGFloat(-M_PI_2), endAngle: CGFloat((M_PI * 2.0) - M_PI_2), clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0), radius: (frame.size.width - 10.0)/2, startAngle: 0.0, endAngle: CGFloat(M_PI * 2.0), clockwise: true)
         //just change the startAngle: and endAngle: parameters of the UIBezierPath. 0 is the 3 position, so the 12 position would be 90° less than that, which is -π/2 in radians. So, the parameters would be startAngle: CGFloat(-M_PI_2), endAngle: CGFloat((M_PI * 2.0) - M_PI_2)
         // Setup the CAShapeLayer with the path, colors, and line width
         circleLayer = CAShapeLayer()
         circleLayer.path = circlePath.CGPath
         circleLayer.fillColor = UIColor.greenColor().CGColor
-        circleLayer.strokeColor = UIColor.magentaColor().CGColor
-        circleLayer.lineWidth = 3.0
+        circleLayer.lineWidth = 4.0
         // Don't draw the circle initially
         circleLayer.strokeEnd = 0.0
         // Add the circleLayer to the view's layer's sublayers
@@ -34,7 +33,11 @@ class CircleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     func animateCircle(duration: NSTimeInterval) {
-        circleLayer.strokeColor = UIColor.magentaColor().CGColor
+        if let image = UIImage(named: "perfect_bubble40.png") {
+            let color = UIColor(patternImage: image)
+            circleLayer.fillColor = color.CGColor
+        }
+        circleLayer.strokeColor = UIColor.whiteColor().CGColor
         // We want to animate the strokeEnd property of the circleLayer
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         // Set the animation duration appropriately
@@ -64,6 +67,7 @@ class CircleView: UIView {
         // Set the circleLayer's strokeEnd property to 1.0 now so that it's the
         // right value when the animation ends.
         circleLayer.strokeEnd = 1.0
+        circleLayer.lineWidth = 1.0
         // Do the actual animation
         circleLayer.addAnimation(animation, forKey: "animateClearCircle")
     }
