@@ -29,6 +29,7 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork.png" translatesAutoresizingMaskIntoConstraints="NO" id="z4t-mz-hyL">
                                 <rect key="frame" x="172" y="295" width="256" height="256"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="256" id="4mj-Ui-Doo"/>
                                     <constraint firstAttribute="height" constant="256" id="Lv8-Ci-b9p"/>

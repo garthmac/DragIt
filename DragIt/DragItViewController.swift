@@ -26,18 +26,49 @@ class DragItViewController: UIViewController {
     @IBOutlet weak var arrowCenterYLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet var panGesture: UIPanGestureRecognizer!
-    
+    @IBOutlet weak var demoButton: UIButton!
+    @IBOutlet weak var shopButton: UIButton!
+    // MARK: - Constants
+    struct Constants {
+        static let VideoSegue = "Bouncer View"
+        static let ShopSegue = "SHOP View"
+        static let DemoURL = "https://redblockblog.wordpress.com/marketing/"
+    }
     var circleViewDict = [String:CircleView]()
     let videoTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
     let degrees: [Double] = [270, 310, 350, 30, 70, 110, 150, 190, 230]
-    
+    var url: NSURL?
+    @IBAction func home(sender: UIButton) {
+        //print(url)
+        if url != nil {
+            UIApplication.sharedApplication().openURL(url!)
+        }
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case Constants.ShopSegue:
+                _ = segue.destinationViewController as! ShopViewController
+            case Constants.VideoSegue:
+                _ = segue.destinationViewController as! BouncerViewController
+            default:
+                break
+            }
+        }
+    }
+    @IBAction func shop(sender: UIButton) {
+        performSegueWithIdentifier(Constants.ShopSegue, sender: nil)
+    }
+    @IBAction func unwindFromModalViewController(segue: UIStoryboardSegue) {
+        //drag from back button to viewController exit button
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: (BouncerViewController.Constants.RepeatVideo))  //needed for autoStart()
+    }
     func pointOnCircleEdge(radius: CGFloat, angleInDegrees: Double) -> CGPoint {
         let center = CGPoint(x: CGRectGetMidX(view!.bounds), y: CGRectGetMidY(view!.bounds) )
         let x = center.x + (radius * cos(degreesToRadians(angleInDegrees)))
         let y = center.y + (radius * sin(degreesToRadians(angleInDegrees)))
         return CGPoint(x: x, y: y)
     }
-    
     func addCircleView(index: Int) {
         let circleWidth = CGFloat(40)   //(25 + (arc4random() % 50))
         let circleHeight = circleWidth
@@ -57,7 +88,6 @@ class DragItViewController: UIViewController {
             }
         }
     }
-
     var initialDragViewY: CGFloat = 30.0
     var isGoalReached: Bool {
         get { let distanceFromGoal: CGFloat = sqrt(pow(self.dragView.center.x - self.goalView.center.x, 2) +
@@ -71,6 +101,7 @@ class DragItViewController: UIViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        url = NSURL(string: Constants.DemoURL)
         lastBounds = self.view.bounds
         let diameter = min(view.frame.maxX, view.frame.maxY) - 50.0
         ringView = UIView(frame: CGRect(origin: goalView.center, size: CGSize(width: diameter, height: diameter)))
@@ -87,6 +118,14 @@ class DragItViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         addBalls()
+        autoStart()
+    }
+    func autoStart() {
+        let repeatVideo = NSUserDefaults.standardUserDefaults().boolForKey(BouncerViewController.Constants.RepeatVideo)
+        if repeatVideo {  //if enabled and if not ever played, will pick random video (otherwise previous played selection)
+            //Note: if back button pressed while watching a repeat enabled video, repeat will shut off...unwind
+            performSegueWithIdentifier(Constants.VideoSegue, sender: nil)
+        }
     }
     func addBalls() {
         for idx in 0..<9 {
@@ -132,7 +171,7 @@ class DragItViewController: UIViewController {
             if self.isGoalReached {
                 self.returnToStartLocationAnimated(false)
                 self.moveObject()
-                performSegueWithIdentifier("Bouncer View", sender: nil)
+                performSegueWithIdentifier(Constants.VideoSegue, sender: nil)
             } else {
                 self.returnToStartLocationAnimated(true)
             }
@@ -141,7 +180,7 @@ class DragItViewController: UIViewController {
     var videoTag = "E"
     // checks for taps on circles
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        // tapping a circle toggles its isAlive state...set dragView
+        // tapping a circle toggles its state...set dragView
         for touch in touches {
             if let _ = touch.view as? CircleView {
                 //print("touch green")

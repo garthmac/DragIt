@@ -116,7 +116,7 @@ class BouncerViewController: UIViewController {
         super.viewDidLoad()
         addVideo()
         animator.addBehavior(bouncer)
-        view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "unwindToMainViewController:"))  //new
+//        view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "unwindToMainViewController:"))  //new
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -185,17 +185,17 @@ class BouncerViewController: UIViewController {
             let ivc = segue.destinationViewController
             //prepare
             for view in ivc.view.subviews {
-                if let button = view as? UIButton {
-                    if button.titleForState(.Normal) == "Back" {
-                        button.layer.cornerRadius = 15 //size width is 30
-                        button.setTitle("X", forState: .Normal)
-                        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                        button.layer.backgroundColor = UIColor.redColor().CGColor
-                        button.layer.borderColor = UIColor.blackColor().CGColor
-                        button.layer.borderWidth = 2
-                        return
-                    }
-                }
+//                if let button = view as? UIButton {
+//                    if button.titleForState(.Normal) == "Back" {
+//                        button.layer.cornerRadius = 15 //size width is 30
+//                        button.setTitle("X", forState: .Normal)
+//                        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//                        button.layer.backgroundColor = UIColor.redColor().CGColor
+//                        button.layer.borderColor = UIColor.blackColor().CGColor
+//                        button.layer.borderWidth = 2
+//                        return
+//                    }
+//                }
                 if let animatedImageView = view as? UIImageView {
                     if animatedImageView.tag == 111 {
                         let images = (0...8).map {
@@ -214,10 +214,10 @@ class BouncerViewController: UIViewController {
         //print("Button tapped")
         self.performSegueWithIdentifier(Constants.Credits, sender: sender)
     }
-    @IBAction func unwindToMainViewController(sender: UIStoryboardSegue){
-        // bug? exit segue doesn't dismiss so we do it manually...
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+//    @IBAction func unwindToMainViewController(sender: UIStoryboardSegue){
+//        // bug? exit segue doesn't dismiss so we do it manually...//used by pinchGesture
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
     @IBAction func unwindFromModalViewController(segue: UIStoryboardSegue) {
         //drag from back button to viewController exit button
     }

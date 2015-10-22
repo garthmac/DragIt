@@ -24,13 +24,10 @@
 		714076DB1BD4813500B24244 /* peanuts-anim2.png in Resources */ = {isa = PBXBuildFile; fileRef = 714076C81BD4813500B24244 /* peanuts-anim2.png */; settings = {ASSET_TAGS = (); }; };
 		714076DC1BD4813500B24244 /* peanuts-anim1.png in Resources */ = {isa = PBXBuildFile; fileRef = 714076C91BD4813500B24244 /* peanuts-anim1.png */; settings = {ASSET_TAGS = (); }; };
 		714076DD1BD4813500B24244 /* peanuts-anim0.png in Resources */ = {isa = PBXBuildFile; fileRef = 714076CA1BD4813500B24244 /* peanuts-anim0.png */; settings = {ASSET_TAGS = (); }; };
-		714076E11BD49A7100B24244 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714076E01BD49A7100B24244 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		71550D5C1BD5733200CFF371 /* glory.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71550D5B1BD5733200CFF371 /* glory.jpg */; settings = {ASSET_TAGS = (); }; };
 		71550D5E1BD5B33C00CFF371 /* perfect_bubble40.png in Resources */ = {isa = PBXBuildFile; fileRef = 71550D5D1BD5B33C00CFF371 /* perfect_bubble40.png */; settings = {ASSET_TAGS = (); }; };
 		716336C81BD0438600520A29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716336C71BD0438600520A29 /* AppDelegate.swift */; };
-		716336CA1BD0438600520A29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716336C91BD0438600520A29 /* ViewController.swift */; };
 		716336CD1BD0438600520A29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716336CB1BD0438600520A29 /* Main.storyboard */; };
-		716336D21BD0438600520A29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716336D01BD0438600520A29 /* LaunchScreen.storyboard */; };
 		716336DD1BD0438600520A29 /* DragItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716336DC1BD0438600520A29 /* DragItTests.swift */; };
 		716336E81BD0438600520A29 /* DragItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716336E71BD0438600520A29 /* DragItUITests.swift */; };
 		716336F91BD0450A00520A29 /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 716336F61BD0450A00520A29 /* arrow_down.png */; settings = {ASSET_TAGS = (); }; };
@@ -74,6 +71,13 @@
 		7163374C1BD0B88500520A29 /* Amazing_Grace_My_Chains_are_Gone_-_Chris_Tomlin_wi.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 716337111BD06B5B00520A29 /* Amazing_Grace_My_Chains_are_Gone_-_Chris_Tomlin_wi.mp4 */; };
 		7163374E1BD1B1C200520A29 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7163374D1BD1B1C200520A29 /* CircleView.swift */; settings = {ASSET_TAGS = (); }; };
 		716337501BD3670300520A29 /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7163374F1BD3670300520A29 /* arrow_up.png */; settings = {ASSET_TAGS = (); }; };
+		7173EE0D1BD6B97C00B35EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7173EE0C1BD6B97C00B35EC5 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		7173EE131BD6BC3100B35EC5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7173EE121BD6BC3100B35EC5 /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
+		71E988991BD82A6C00D374F0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E988981BD82A6C00D374F0 /* StoreKit.framework */; };
+		71FC45051BD6FB50005C43B3 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173EE141BD6BC7500B35EC5 /* IAPHelper.swift */; };
+		71FC45061BD6FB57005C43B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173EE161BD6BD8500B35EC5 /* Settings.swift */; };
+		71FC45071BD6FB5D005C43B3 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173EE0A1BD6B65B00B35EC5 /* ShopViewController.swift */; };
+		71FC45081BD6FB62005C43B3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173EE181BD6BDC300B35EC5 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,14 +115,11 @@
 		714076C81BD4813500B24244 /* peanuts-anim2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peanuts-anim2.png"; sourceTree = "<group>"; };
 		714076C91BD4813500B24244 /* peanuts-anim1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peanuts-anim1.png"; sourceTree = "<group>"; };
 		714076CA1BD4813500B24244 /* peanuts-anim0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "peanuts-anim0.png"; sourceTree = "<group>"; };
-		714076E01BD49A7100B24244 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		71550D5B1BD5733200CFF371 /* glory.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glory.jpg; sourceTree = "<group>"; };
 		71550D5D1BD5B33C00CFF371 /* perfect_bubble40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfect_bubble40.png; sourceTree = "<group>"; };
 		716336C41BD0438600520A29 /* DragIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		716336C71BD0438600520A29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		716336C91BD0438600520A29 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		716336CC1BD0438600520A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		716336D11BD0438600520A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		716336D31BD0438600520A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		716336D81BD0438600520A29 /* DragItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		716336DC1BD0438600520A29 /* DragItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragItTests.swift; sourceTree = "<group>"; };
@@ -167,6 +168,13 @@
 		7163373E1BD072DB00520A29 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		7163374D1BD1B1C200520A29 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		7163374F1BD3670300520A29 /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
+		7173EE0A1BD6B65B00B35EC5 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		7173EE0C1BD6B97C00B35EC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7173EE121BD6BC3100B35EC5 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		7173EE141BD6BC7500B35EC5 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		7173EE161BD6BD8500B35EC5 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		7173EE181BD6BDC300B35EC5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		71E988981BD82A6C00D374F0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71E988991BD82A6C00D374F0 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +206,7 @@
 		716336BB1BD0438600520A29 = {
 			isa = PBXGroup;
 			children = (
+				71E988981BD82A6C00D374F0 /* StoreKit.framework */,
 				716336C61BD0438600520A29 /* DragIt */,
 				716336F51BD044F000520A29 /* Assets */,
 				716337081BD06B2300520A29 /* Videos */,
@@ -227,11 +237,14 @@
 				716337051BD06AF400520A29 /* BouncerViewController.swift */,
 				716336FC1BD04BCB00520A29 /* DragItViewController.swift */,
 				7163374D1BD1B1C200520A29 /* CircleView.swift */,
-				716336CB1BD0438600520A29 /* Main.storyboard */,
-				714076E01BD49A7100B24244 /* Images.xcassets */,
-				716336D01BD0438600520A29 /* LaunchScreen.storyboard */,
-				716336C91BD0438600520A29 /* ViewController.swift */,
+				7173EE141BD6BC7500B35EC5 /* IAPHelper.swift */,
+				7173EE0C1BD6B97C00B35EC5 /* Images.xcassets */,
 				716336D31BD0438600520A29 /* Info.plist */,
+				7173EE121BD6BC3100B35EC5 /* LaunchScreen.xib */,
+				716336CB1BD0438600520A29 /* Main.storyboard */,
+				7173EE161BD6BD8500B35EC5 /* Settings.swift */,
+				7173EE0A1BD6B65B00B35EC5 /* ShopViewController.swift */,
+				7173EE181BD6BDC300B35EC5 /* User.swift */,
 			);
 			path = DragIt;
 			sourceTree = "<group>";
@@ -407,6 +420,11 @@
 					716336C31BD0438600520A29 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 7P9362E76E;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					716336D71BD0438600520A29 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -446,7 +464,6 @@
 				716337441BD0B88500520A29 /* Youre_Beautiful_-Phil_Wickham_{HD}.mp4 in Resources */,
 				714076D41BD4813500B24244 /* snoopy-tennis.png in Resources */,
 				714076DA1BD4813500B24244 /* peanuts-anim3.png in Resources */,
-				714076E11BD49A7100B24244 /* Images.xcassets in Resources */,
 				714076D91BD4813500B24244 /* peanuts-anim4.png in Resources */,
 				716337451BD0B88500520A29 /* CYMATICS_Science_Vs._Music_-_Nigel_Stanford.mp4 in Resources */,
 				714076DC1BD4813500B24244 /* peanuts-anim1.png in Resources */,
@@ -459,6 +476,8 @@
 				714076D51BD4813500B24244 /* peanuts-anim8.png in Resources */,
 				71550D5C1BD5733200CFF371 /* glory.jpg in Resources */,
 				714076DB1BD4813500B24244 /* peanuts-anim2.png in Resources */,
+				7173EE0D1BD6B97C00B35EC5 /* Images.xcassets in Resources */,
+				7173EE131BD6BC3100B35EC5 /* LaunchScreen.xib in Resources */,
 				7163374C1BD0B88500520A29 /* Amazing_Grace_My_Chains_are_Gone_-_Chris_Tomlin_wi.mp4 in Resources */,
 				714076DD1BD4813500B24244 /* peanuts-anim0.png in Resources */,
 				716337031BD06AE400520A29 /* Settings.bundle in Resources */,
@@ -473,7 +492,6 @@
 				714076CE1BD4813500B24244 /* IMG_3562.jpg in Resources */,
 				7163372E1BD06B9000520A29 /* Icon-50.png in Resources */,
 				716337321BD06B9000520A29 /* Icon-24@2x.png in Resources */,
-				716336D21BD0438600520A29 /* LaunchScreen.storyboard in Resources */,
 				716337361BD06B9000520A29 /* Icon-60@3x.png in Resources */,
 				716336FB1BD0450A00520A29 /* arrow_down@3x.png in Resources */,
 				711B43181BD4147100C09A7D /* starySky.png in Resources */,
@@ -526,9 +544,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71FC45081BD6FB62005C43B3 /* User.swift in Sources */,
+				71FC45071BD6FB5D005C43B3 /* ShopViewController.swift in Sources */,
+				71FC45061BD6FB57005C43B3 /* Settings.swift in Sources */,
+				71FC45051BD6FB50005C43B3 /* IAPHelper.swift in Sources */,
 				7163374E1BD1B1C200520A29 /* CircleView.swift in Sources */,
 				716336FD1BD04BCB00520A29 /* DragItViewController.swift in Sources */,
-				716336CA1BD0438600520A29 /* ViewController.swift in Sources */,
 				716337061BD06AF400520A29 /* BouncerBehavior.swift in Sources */,
 				716337071BD06AF400520A29 /* BouncerViewController.swift in Sources */,
 				716336C81BD0438600520A29 /* AppDelegate.swift in Sources */,
@@ -573,14 +594,6 @@
 				716336CC1BD0438600520A29 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		716336D01BD0438600520A29 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				716336D11BD0438600520A29 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -674,11 +687,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DragIt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.garthmackenzie.DragIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -687,11 +702,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DragIt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.garthmackenzie.DragIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
