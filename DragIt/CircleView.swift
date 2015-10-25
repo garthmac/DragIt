@@ -38,7 +38,7 @@ class CircleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     func animateCircle(duration: NSTimeInterval) {
-        if let image = UIImage(named: "vectorA40") {
+        if let image = UIImage(named: Settings().purchasedUid!) {
             let color = UIColor(patternImage: image)
             circleLayer.fillColor = color.CGColor
         }
@@ -74,9 +74,8 @@ class CircleView: UIView {
         circleLayer.strokeEnd = 1.0
         circleLayer.lineWidth = 1.5
         // Do the actual animation
-        circleLayer.addAnimation(animation, forKey: "animateClearCircle")
+        circleLayer.addAnimation(animation, forKey: "animateEraseCircle")
     }
-
 //    override func drawRect(rect: CGRect) {
 //        // Get the Graphics Context
 //        var context = UIGraphicsGetCurrentContext()

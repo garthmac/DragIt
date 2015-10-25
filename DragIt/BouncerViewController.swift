@@ -1,8 +1,8 @@
 //
 //  BouncerViewController.swift
-//  BouncerL13 -RED BLOCK
+//  DragIt
 //
-//  Created by iMac21.5 on 5/19/15.
+//  Created by iMac 27 on 2015-10-15.
 //  Copyright (c) 2015 Garth MacKenzie. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ class BouncerViewController: UIViewController {
 //            return true
 //        }
 //        else {
-            return NSUserDefaults.standardUserDefaults().boolForKey(Constants.RepeatVideo)
+            return NSUserDefaults.standardUserDefaults().boolForKey(Constants.RepeatVideo)  //note lazy
 //        }
         }()
     lazy var opacity: CGFloat = {
@@ -91,7 +91,15 @@ class BouncerViewController: UIViewController {
         static let BlockSize = CGSize(width: 40.0, height: 40.0)
         static let FavVideo = "BouncerViewController.FavVideo"
         static let RepeatVideo = "BouncerViewController.RepeatVideo"
+        static let AutoStart = "BouncerViewController.Auto.Start"
         static let Credits = "Credits"
+        static let VideoSegue = "Bouncer View"
+        static let ShopSegue = "SHOP View"
+        static let DragItDemoURL = "https://player.vimeo.com/video/143505343?autoplay=1"
+        static let Demo2URL = "https://player.vimeo.com/video/141500688?autoplay=1"
+        static let Demo3URL = "https://player.vimeo.com/video/141498589?autoplay=1"
+        static let MarketingURL = "https://redblockblog.wordpress.com/marketing/"
+
     }
     struct Videos {
         static let
@@ -112,6 +120,7 @@ class BouncerViewController: UIViewController {
         }
         return UIColor.redColor()
     }()
+    // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addVideo()
@@ -185,17 +194,6 @@ class BouncerViewController: UIViewController {
             let ivc = segue.destinationViewController
             //prepare
             for view in ivc.view.subviews {
-//                if let button = view as? UIButton {
-//                    if button.titleForState(.Normal) == "Back" {
-//                        button.layer.cornerRadius = 15 //size width is 30
-//                        button.setTitle("X", forState: .Normal)
-//                        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//                        button.layer.backgroundColor = UIColor.redColor().CGColor
-//                        button.layer.borderColor = UIColor.blackColor().CGColor
-//                        button.layer.borderWidth = 2
-//                        return
-//                    }
-//                }
                 if let animatedImageView = view as? UIImageView {
                     if animatedImageView.tag == 111 {
                         let images = (0...8).map {
@@ -221,7 +219,6 @@ class BouncerViewController: UIViewController {
     @IBAction func unwindFromModalViewController(segue: UIStoryboardSegue) {
         //drag from back button to viewController exit button
     }
-
 
 }
 

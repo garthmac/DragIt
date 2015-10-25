@@ -17,6 +17,7 @@ func radiansToDegrees(radians: Double) -> CGFloat {
 
 class DragItViewController: UIViewController {
 
+    @IBOutlet weak var backDropImageView: UIImageView!
     @IBOutlet weak var dragAreaView: UIView!
     @IBOutlet weak var goalView: UIView!
     @IBOutlet weak var dragHereLabel: UILabel!
@@ -28,28 +29,35 @@ class DragItViewController: UIViewController {
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     @IBOutlet weak var demoButton: UIButton!
     @IBOutlet weak var shopButton: UIButton!
-    // MARK: - Constants
-    struct Constants {
-        static let VideoSegue = "Bouncer View"
-        static let ShopSegue = "SHOP View"
-        static let DemoURL = "https://redblockblog.wordpress.com/marketing/"
-    }
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+
     var circleViewDict = [String:CircleView]()
     let videoTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
     let degrees: [Double] = [270, 310, 350, 30, 70, 110, 150, 190, 230]
     var url: NSURL?
-    @IBAction func home(sender: UIButton) {
-        //print(url)
+    var creditsURL: NSURL?
+    @IBAction func demo(sender: UIButton?) {
         if url != nil {
             UIApplication.sharedApplication().openURL(url!)
+        }
+    }
+    func demo3(sender: UIButton?) {
+        if creditsURL != nil {
+            UIApplication.sharedApplication().openURL(creditsURL!)
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
-            case Constants.ShopSegue:
-                _ = segue.destinationViewController as! ShopViewController
-            case Constants.VideoSegue:
+            case BouncerViewController.Constants.ShopSegue:
+                if let svc = segue.destinationViewController as? ShopViewController {
+                    svc.backDrops = backDrops
+                    svc.backDropImages = backDropImages
+                    svc.ballSkins = ballSkins
+                    svc.ballImages = ballImages
+                    svc.doneLoad = doneLoad
+                }
+            case BouncerViewController.Constants.VideoSegue:
                 _ = segue.destinationViewController as! BouncerViewController
             default:
                 break
@@ -57,11 +65,38 @@ class DragItViewController: UIViewController {
         }
     }
     @IBAction func shop(sender: UIButton) {
-        performSegueWithIdentifier(Constants.ShopSegue, sender: nil)
+        spinner?.startAnimating()
+        performSegueWithIdentifier(BouncerViewController.Constants.ShopSegue, sender: nil)
     }
     @IBAction func unwindFromModalViewController(segue: UIStoryboardSegue) {
         //drag from back button to viewController exit button
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: (BouncerViewController.Constants.RepeatVideo))  //needed for autoStart()
+        spinner?.stopAnimating()
+    }
+    @IBAction func unwindFromModalCREDITSViewController(segue: UIStoryboardSegue) {
+        //drag from back button to viewController exit button
+        demo3(nil)
+    }
+    func rotateView(view: UIView, degrees: CGFloat) {
+        let delay = 2.0 * Double(NSEC_PER_SEC)
+        if degrees <= 180 {
+            let deg1 = degrees
+            UIView.animateWithDuration(2.0, animations: {
+                view.transform = CGAffineTransformMakeRotation((deg1 * CGFloat(M_PI)) / 180.0)
+            })
+        } else {
+            let deg2 = 360.0 - degrees
+            UIView.animateWithDuration(2.0, animations: {
+                view.transform = CGAffineTransformMakeRotation((180.0 * CGFloat(M_PI)) / 180.0)
+            })
+            UIView.animateWithDuration(2.0, animations: {
+                view.transform = CGAffineTransformMakeRotation((deg2 * CGFloat(M_PI)) / 180.0)
+            })
+        }
+        Settings().availableCredits += 1
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()) { [weak self] (success) -> Void in
+            self!.performSegueWithIdentifier(BouncerViewController.Constants.VideoSegue, sender: nil)
+        }
     }
     func pointOnCircleEdge(radius: CGFloat, angleInDegrees: Double) -> CGPoint {
         let center = CGPoint(x: CGRectGetMidX(view!.bounds), y: CGRectGetMidY(view!.bounds) )
@@ -98,14 +133,17 @@ class DragItViewController: UIViewController {
     let dragAreaPadding = 5
     var lastBounds = CGRectZero
     var ringView: UIView?
+    var backDropImages: [UIImage]?
+    var ballImages: [UIImage]?
+    var doneLoad = false
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        url = NSURL(string: Constants.DemoURL)
+        url = NSURL(string: BouncerViewController.Constants.DragItDemoURL)
+        creditsURL = NSURL(string: BouncerViewController.Constants.Demo3URL)
         lastBounds = self.view.bounds
         let diameter = min(view.frame.maxX, view.frame.maxY) - 50.0
         ringView = UIView(frame: CGRect(origin: goalView.center, size: CGSize(width: diameter, height: diameter)))
-        //print(ringView!.frame)
         ringView!.layer.borderColor = UIColor.greenColor().CGColor       //change to green to see
         ringView!.layer.cornerRadius = ringView!.bounds.size.width / 2   //new
         ringView!.layer.borderWidth = 4                                  //new
@@ -115,16 +153,47 @@ class DragItViewController: UIViewController {
         initialDragViewY = self.dragViewYLayoutConstraint.constant
         updateGoalView()
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        earnCoin()  //show available credits
+        if Settings().mybackDrops.count > 1 {
+            for i in 0..<backDrops.count {
+                if backDrops[i] == Settings().mybackDrops.last {
+                    backDropImageView.image = UIImage(named: self.backDrops[i])
+                }
+            }
+        }
+    }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         addBalls()
+        if ballImages == nil {
+            let backgroundQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
+            dispatch_async(backgroundQueue, { [weak self] in
+                print("This is run on the background queue")
+                self!.ballImages = (0..<self!.ballSkins.count).map {
+                    UIImage(named: self!.ballSkins[$0])!
+                }
+                self!.backDropImages = (0..<self!.backDrops.count).map {
+                    UIImage(named: self!.backDrops[$0])!
+                }
+                dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                    print("This is run on the main queue, after backgroundQueue code in outer closure...doneLoad = true")
+                    self!.doneLoad = true
+                    })
+                })
+        }
         autoStart()
     }
+    private var auto: Bool { // a computed property instead of func
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(BouncerViewController.Constants.AutoStart)
+        }
+    }
     func autoStart() {
-        let repeatVideo = NSUserDefaults.standardUserDefaults().boolForKey(BouncerViewController.Constants.RepeatVideo)
-        if repeatVideo {  //if enabled and if not ever played, will pick random video (otherwise previous played selection)
-            //Note: if back button pressed while watching a repeat enabled video, repeat will shut off...unwind
-            performSegueWithIdentifier(Constants.VideoSegue, sender: nil)
+        if auto {  //if enabled, will pick random video (otherwise previous played selection)
+            //Note: if back button pressed while watching a repeat enabled video, repeat will shut off...via unwind below
+            performSegueWithIdentifier(BouncerViewController.Constants.VideoSegue, sender: nil)
         }
     }
     func addBalls() {
@@ -171,13 +240,13 @@ class DragItViewController: UIViewController {
             if self.isGoalReached {
                 self.returnToStartLocationAnimated(false)
                 self.moveObject()
-                performSegueWithIdentifier(Constants.VideoSegue, sender: nil)
+                rotateView(goalView, degrees: 360.0)  //performSegue
             } else {
                 self.returnToStartLocationAnimated(true)
             }
         }
     }
-    var videoTag = "E"
+    var videoTag = "Z"
     // checks for taps on circles
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // tapping a circle toggles its state...set dragView
@@ -188,7 +257,9 @@ class DragItViewController: UIViewController {
                 for (key,circle) in circleViewDict {
                     if circle.frame.contains(point) {
                         if videoTag != key {
-                            circleViewDict[videoTag]!.animateEraseCircle(2.0)
+                            if videoTag != "Z" {
+                                circleViewDict[videoTag]!.animateEraseCircle(2.0)
+                            }
                             videoTag = key
                             NSUserDefaults.standardUserDefaults().setObject(videoTag, forKey: BouncerViewController.Constants.FavVideo)
                             circle.animateCircle(2.0)
@@ -254,7 +325,79 @@ class DragItViewController: UIViewController {
                 completion: nil)
         }
     }
-    
+    let backDrops = ["aurora-6-iss-150318.jpg",
+        "Black_hole2048.jpg",
+        "bluePlanet.jpg",
+        "Clouds_outer_space_planets_earth.jpg",
+        "digital_art_1024x1024.jpg",
+        "glory.jpg",
+        "heavensDeclare.jpg",
+        "IMG_3562.jpg",
+        "Outer_space_planets_earth_men_fantasy.jpg",
+        "space_3d_art_planet_earth_apocalyptic.jpg",
+        "sunrise_glory-wide.jpg"]
+    let ballSkins = ["arrow40",
+        "asian40",
+        "balloonRing40",
+        "bluePlanet40",
+        "burning40",
+        "cufi40",
+        "edd40",
+        "globe40",
+        "starDavid40",
+        "vectorA40",
+        "vectorB40"]
+    // MARK: - get coins!
+    lazy var coins: UIImageView = {
+        let size = CGSize(width: 42.0, height: 20.0)
+        let coins = UIImageView(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: size))
+        self.view.addSubview(coins)
+        return coins
+    }()
+    private var coinCount = 0
+    lazy var coinCountLabel: UILabel = { let coinCountLabel = UILabel(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: CGSize(width: 80.0, height: 20.0)))
+        coinCountLabel.font = UIFont(name: "ComicSansMS-Bold", size: 18.0)
+        coinCountLabel.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(coinCountLabel)
+        return coinCountLabel
+    }()
+    lazy var largeCoin: UIImageView = {
+        let size = CGSize(width: 100.0, height: 100.0)
+        let coin = UIImageView(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: size))
+        self.view.addSubview(coin)
+        return coin
+    }()
+    func resetCoins() {
+        let midx = view.bounds.midX
+        coins.center = CGPoint(x: (midx - 60.0), y: (view.bounds.minY + 12.0))
+        coinCountLabel.center = CGPoint(x: (midx + 60.0), y: (view.bounds.minY + 10.0))
+        largeCoin.center = CGPoint(x: midx, y: view.bounds.midY)
+    }
+    func earnCoin() {  //show available credits
+        self.coinCount += Settings().availableCredits  //move first because of annimation delay
+        //prepare for annimation
+        largeCoin.image = UIImage(named: "1000CreditsSWars1.png")
+        resetCoins()
+        largeCoin.alpha = 1
+        largeCoin.center.y = view.bounds.minY //move off screen but alpha = 1
+        UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
+            self.largeCoin.alpha = 0
+            }, completion: nil)
+        //prepare for annimation
+        coinCountLabel.alpha = 0
+        coinCountLabel.center.y = view.bounds.maxY //move off screen
+        if let image = UIImage(named: "1000Credits2-20.png") {
+            coins.image = image
+            coins.alpha = 0
+            coins.center.y = view.bounds.maxY //move off screen
+            UIView.animateWithDuration(4.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
+                self.coinCountLabel.text = "\(Settings().availableCredits)"
+                self.resetCoins()
+                self.coins.alpha = 1
+                self.coinCountLabel.alpha = 1
+                }, completion: nil)
+        }
+    }
     /*
     // MARK: - Navigation
     

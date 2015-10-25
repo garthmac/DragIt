@@ -18,6 +18,9 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     @IBOutlet weak var helpPickerView: UIPickerView!
     @IBOutlet weak var creditsPickerView: UIPickerView!
     @IBOutlet weak var buyCreditsButton: UIButton!
+    @IBOutlet weak var buyCreditsButtonYLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var creditsPickerYLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var helpPickerYLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var newsLine: UIButton!
     
     @IBAction func showHelpAction(sender: UIButton) {
@@ -66,7 +69,10 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
         set { self.pickerDataSourceCredits = newValue }
     }
+    var backDropImages: [UIImage]?
+    var backDrops: [String]?
     var ballImages: [UIImage]?
+    var ballSkins: [String]?
     private var pickerDataSource: [UIImage] { // a computed property instead of func
         get { return ballImages! }
         set { self.pickerDataSource = newValue }
@@ -81,33 +87,12 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     }
     private var pickerDataSource2: [UIImage] { // a computed property instead of func
         get {
-            return (0..<self.audios.count).map {
-                UIImage(named: self.audios[$0])!
+            return (0..<backDrops!.count).map {
+                backDropImages![$0]
             }
         }
         set { self.pickerDataSource2 = newValue }
     }
-//    private var pickerDataSource3: [UIImage] { // a computed property instead of func
-//        get {
-//            return (0..<self.paddles.count).map {
-//                UIImage(named: self.paddles[$0])!
-//            }
-//        }
-//        set { self.pickerDataSource3 = newValue }
-//    }
-//    private var pickerDataSource4: [UIImage] { // a computed property instead of func
-//        get {
-//            if model.hasPrefix("iPad") {
-//                return (0..<self.iPadPaddleWidths.count).map {
-//                    UIImage(named: self.iPadPaddleWidths[$0])!
-//                }
-//            }
-//            return (0..<self.paddleWidths.count).map {
-//                UIImage(named: self.paddleWidths[$0])!
-//            }
-//        }
-//        set { self.pickerDataSource4 = newValue }
-//    }
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         if pickerView.tag == 1 { return 1 }
         if pickerView.tag == 2 { return 1 }
@@ -124,11 +109,10 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             return pickerDataSource1.count
         }
         if component == 2 {
-            return pickerDataSource2.count
+            if doneLoad {
+                return pickerDataSource2.count
+            }
         }
-//        if component == 3 {
-//            return pickerDataSource3.count
-//        }
         return pickerDataSource.count
     }
     //MARK: - UIPickerViewDelegate
@@ -159,19 +143,9 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
         if component == 2 {
             iv = UIImageView(image: pickerDataSource2[row])
-            iv.bounds = CGRect(x: 0, y: 0, width: 65, height: 65)
+            iv.bounds = CGRect(x: 0, y: 0, width: 150, height: 75)
             return iv
         }
-//        if component == 3 {
-//            iv = UIImageView(image: pickerDataSource3[row])
-//            iv.bounds = CGRect(x: 0, y: 0, width: 65, height: 30)
-//            return iv
-//        }
-//        if component == 4 {
-//            iv = UIImageView(image: pickerDataSource4[row])
-//            iv.bounds = CGRect(x: 0, y: 0, width: 65, height: 65)
-//            return iv
-//        }
         return UIView()
     }
     var selectedHintIndex = Settings().lastHint
@@ -186,6 +160,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     var selectedLogin3: String?
     var selectedPaddleWidth4: UIImage?
     var selectedLogin4: String?
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 {
             selectedHintIndex = row
@@ -196,7 +171,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
         if component == 0 {
             selectedBallSkin = pickerDataSource[row]
-            return selectedLogin = ballSkins[row]
+            return selectedLogin = ballSkins![row]
         }
         if component == 1 {
             selectedBallSkin1 = pickerDataSource1[row]
@@ -204,46 +179,9 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
         if component == 2 {
             selectedAudio2 = pickerDataSource2[row]
-            return selectedLogin2 = audios[row]
+            return selectedLogin2 = backDrops![row]
         }
-//        if component == 3 {
-//            selectedPaddle3 = pickerDataSource3[row]
-//            return selectedLogin3 = paddles[row]
-//        }
-//        if component == 4 {
-//            selectedPaddleWidth4 = pickerDataSource4[row]
-//            if model.hasPrefix("iPad") {
-//                selectedLogin4 = iPadPaddleWidths[row]
-//            } else {
-//                selectedLogin4 = paddleWidths[row]
-//            }
-//        }
     }
-//    var tbvcArray: [UIViewController]?
-//    func prepareTabBar() {
-//        tbvcArray = tabBarController!.viewControllers
-//        let cvc = tbvcArray![4]    //CREDITS
-//        for view in cvc.view.subviews {
-//            if let animatedImageView = view as? UIImageView {
-//                if animatedImageView.tag == 111 {
-//                    let images = (0...8).map {
-//                        UIImage(named: "peanuts-anim\($0).png")!
-//                    }
-//                    animatedImageView.animationImages = images
-//                    animatedImageView.animationDuration = 7.0
-//                    animatedImageView.startAnimating()
-//                }
-//                if animatedImageView.tag == 333 {
-//                    let images = (0...6).map {
-//                        UIImage(named: "typing-computer\($0).png")!
-//                    }
-//                    animatedImageView.animationImages = images
-//                    animatedImageView.animationDuration = 1.0
-//                    animatedImageView.startAnimating()
-//                }
-//            }
-//        }
-//    }
     private var availableCredits: Int { // a computed property instead of func
         get { return Settings().availableCredits }
         set {
@@ -252,46 +190,26 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
     }
     let helper = IAPHelper()
-    var url: NSURL?
-    @IBAction func home(sender: UIButton) {
-        //print(url)
-        if url != nil {
-            UIApplication.sharedApplication().openURL(url!)
+    var url2: NSURL?
+    @IBAction func demo2(sender: UIButton) {
+        if url2 != nil {
+            UIApplication.sharedApplication().openURL(url2!)
         }
     }
     var doneLoad = false
     //MARK: - view lifecycle
+    override func viewDidLayoutSubviews() { //remove this if copied
+        super.viewDidLayoutSubviews()
+        if model.hasPrefix("iPad") {
+            buyCreditsButtonYLayoutConstraint.constant = 10
+            creditsPickerYLayoutConstraint.constant = -40
+            helpPickerYLayoutConstraint.constant = -30
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        url = NSURL(string: "https://redblockblog.wordpress.com/marketing/")!
-        if #available(iOS 8.0, *) {  //let qualityOfServiceClass = QOS_CLASS_USER...
-            let qualityOfServiceClass = QOS_CLASS_USER_INITIATED
-            let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
-            dispatch_async(backgroundQueue, { [weak self] in
-                print("This is run on the background queue")
-                self!.ballImages = (0..<self!.ballSkins.count).map {
-                    UIImage(named: self!.ballSkins[$0])!
-                }
-                dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                    print("This is run on the main queue, after backgroundQueue code in outer closure")
-                    self!.doneLoad = true
-                    self!.userPickerView.reloadComponent(0)
-                    self!.userPickerView.selectRow(2, inComponent: 0, animated: true)
-                    self!.pickerView(self!.userPickerView, didSelectRow: 2, inComponent: 0)
-                })
-            })
-        } else {
-            // Fallback for versions less than 8 for iOS 4.3 thru 7
-            UIView.animateWithDuration(0.1, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-                self.ballImages = (0..<self.ballSkins.count).map {
-                    UIImage(named: self.ballSkins[$0])! }
-                }, completion: { [weak self] (success) -> Void in
-                    self!.doneLoad = true
-                    self!.userPickerView.reloadComponent(0)
-                    self!.userPickerView.selectRow(2, inComponent: 0, animated: true)
-                    self!.pickerView(self!.userPickerView, didSelectRow: 2, inComponent: 0)
-            })
-        }
+        url2 = NSURL(string: BouncerViewController.Constants.MarketingURL)!
+        userPickerView.reloadComponent(0)
         userPickerView.delegate = self
         userPickerView.dataSource = self
         helpPickerView.delegate = self
@@ -301,7 +219,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         //prepareTabBar()
         for aView in view.subviews {
             if let button = aView as? UIButton {
-                if (0...7).contains(button.tag) {
+                if (0...9).contains(button.tag) {
                     button.layer.cornerRadius = 15.0
                     button.layer.borderWidth = 1.0
                     button.layer.borderColor = UIColor.blueColor().CGColor
@@ -312,8 +230,8 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     }
     func updateMySkins(withSkin: String) {
         if Settings().mySkins.count > 1 {
-            if let index = ballSkins.indexOf(withSkin) {
-                self.selectedLogin1 = ballSkins[index]
+            if let index = ballSkins!.indexOf(withSkin) {
+                self.selectedLogin1 = ballSkins![index]
                 if let index1 = Settings().mySkins.indexOf((self.selectedLogin1!)) {
                     userPickerView.selectRow(index1, inComponent: 1, animated: true)
                     pickerView(userPickerView, didSelectRow: index1, inComponent: 1)
@@ -326,19 +244,15 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        userPickerView.selectRow(3, inComponent: 0, animated: true)
+        pickerView(userPickerView, didSelectRow: 3, inComponent: 0)
         helpPickerView.selectRow(Settings().lastHint, inComponent: 0, animated: true)
         updateMySkins(Settings().purchasedUid!)
-        userPickerView.selectRow(Settings().soundChoice, inComponent: 2, animated: true)
-        pickerView(userPickerView, didSelectRow: Settings().soundChoice, inComponent: 2)
-        showBuyCreditsAction(UIButton()) 
-//        if let index = paddles.indexOf((Settings().myPaddles.last!)) {
-//            userPickerView.selectRow(index, inComponent: 3, animated: true)
-//        }
-//        userPickerView.selectRow(Settings().paddleWidthMultiplier, inComponent: 4, animated: true)
+        userPickerView.selectRow(Settings().backDropChoice, inComponent: 2, animated: true)
+        pickerView(userPickerView, didSelectRow: Settings().backDropChoice, inComponent: 2)
+        showBuyCreditsAction(UIButton())
     }
     func updateShopTab() {
-//        self.tabBarController?.tabBar.hidden = false
-//        let shopTabBarItem = tabBarController!.tabBar.items![0]
 //        shopTabBarItem.badgeValue = "\(availableCredits)"   //everything costs 10 credits or $1
     }
     func warnIfCreditsLow() {
@@ -363,10 +277,6 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         helper.setIAPs()
         updateShopTab()
     }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(true)
-        self.audioPlayer?.pause()
-    }
     //MARK: - Action buySelection
     @IBAction func buySelection(sender: UIButton) {
         switch sender.tag {
@@ -377,91 +287,32 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             if let login = self.selectedLogin1 { //can only happen if the wheel is spun
                 let loggedInUser = User.login(login, password: "foo") //SWAP ball out to other owned ball
                 print(loggedInUser)
+                Settings().purchasedUid = loggedInUser.login  //new
                 //paddleBallTabBarItem.badgeValue = login
             } else {
                 //paddleBallTabBarItem.badgeValue = "tennis"
             }
 //            self.tabBarController!.selectedIndex = 0
         case 2: //println(sender.tag)
-            checkout("Deduct 10 coins for selected Audio?", sender: sender)
-//        case 3: //println(sender.tag)
-//            checkout("Deduct 10 coins for selected Paddle skin?", sender: sender)
-//        case 4: //println(sender.tag)
-//            let cost = minimumPWCredits()
-//            let msg = "Deduct " + String(cost) + " coins for selected Paddle Width Multipler?"
-//            let msg2 = " \n \n...Settings will be UNLOCKED for future (PdWd) adjustments"
-//            if model.hasPrefix("iPad") {
-//                if cost == 100 {
-//                    return checkout(msg + msg2, sender: sender)
-//                }
-//            } else {
-//                if cost == 50 {
-//                    return checkout(msg + msg2, sender: sender)
-//                }
-//            }
-//            checkout(msg, sender: sender)
+            checkout("Deduct 10 coins for selected BackDrop image?", sender: sender)
         case 5: //println(sender.tag)
             checkout("Add \(chosenNumberOfCredits()) game Credits?", sender: sender)
         default: break
         }
     }
-    private var audioPlayer: AVAudioPlayer!
     private var path: String! = ""
-    private var soundTrack = 0
-    func prepareAudios() {
-        switch soundTrack {
-        case 0: path = NSBundle.mainBundle().pathForResource("jazzloop2_70", ofType: "mp3")
-        case 1: path = NSBundle.mainBundle().pathForResource("CYMATICS- Science Vs. Music - Nigel Stanford-2", ofType: "mp3")
-        case 2: path = NSBundle.mainBundle().pathForResource("Phil Wickham-Carry My Soul(Live at RELEVANT)", ofType: "mp3")
-        case 3: path = NSBundle.mainBundle().pathForResource("Hudson - Chained", ofType: "mp3")
-        case 4: path = NSBundle.mainBundle().pathForResource("Forrest Gump Soundtrack", ofType: "mp3")
-        case 5: path = NSBundle.mainBundle().pathForResource("Titanic Soundtrack - Rose", ofType: "mp3")
-        case 6: path = NSBundle.mainBundle().pathForResource("Phil Wickham - This Is Amazing Grace", ofType: "mp3")
-        case 7: path = NSBundle.mainBundle().pathForResource("Hillsong United - No Other Name - Oceans (Where Feet May Fail)", ofType: "mp3")
-        case 8: path = NSBundle.mainBundle().pathForResource("Phil Wickham - At Your Name (Yahweh, Yahweh)", ofType: "mp3")
-        case 9: path = NSBundle.mainBundle().pathForResource("Yusuf Islam - Peace Train - OUTSTANDING!-2", ofType: "mp3")
-        case 10: path = NSBundle.mainBundle().pathForResource("Titans Spirit(Remember The Titans)-Trevor Rabin", ofType: "mp3")
-        default: path = NSBundle.mainBundle().pathForResource("jazzloop2_70", ofType: "mp3")
-        }
-        let url = NSURL.fileURLWithPath(path!)
-        audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
-        audioPlayer.delegate = self
-        audioPlayer.numberOfLoops = 0 //0 means play once
-        audioPlayer.prepareToPlay()
-    }
-    func fireAutoStart(timer: NSTimer) {
-        if audioPlayer?.playing == true {audioPlayer?.stop()}
-    }
     func checkout(message: String, sender: UIButton) {
-        if #available(iOS 8.0, *) {
-            let alertController = UIAlertController(title: "Checkout", message: message, preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "Pay now!", style: UIAlertActionStyle.Default, handler: { (action) in
-                self.buy(sender)  //this is the main use
-            }))
-            if sender.tag == 2 {
-                for i in 0..<audios.count {
-                    if audios[i] == self.selectedLogin2! {
-                        soundTrack = i
-                        let autoStartTimer =  NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "fireAutoStart:", userInfo: nil, repeats: false)
-                        autoStartTimer
-                    }
-                }
-                alertController.addAction(UIAlertAction(title: "Sample 1st ...", style: UIAlertActionStyle.Cancel, handler: { (action) in
-                    self.audioPlayer?.pause()
-                    self.prepareAudios()
-                    if Settings().soundOn {
-                        self.audioPlayer.play()
-                    } else {
-                   self.audioPlayer?.pause()
-                    }
-                }))
-            } else {
-                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) in
-            }))
-            }
-            presentViewController(alertController, animated: true, completion: nil)
-        } else { //iOS 7
-            self.buy(sender)
+        let alertController = UIAlertController(title: "Checkout", message: message, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Pay now!", style: UIAlertActionStyle.Default, handler: { (action) in
+            self.buy(sender)  //this is the main use
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) in
+        }))
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    func returnToDragIt() {
+        if let divc = presentingViewController as? DragItViewController {
+            divc.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     func buy(sender: UIButton) {
@@ -471,114 +322,42 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
                 availableCredits -= 10
                 let loggedInUser = User.login(self.selectedLogin!, password: "foo") //new ball
                 print(loggedInUser)
-                //let paddleBallTabBarItem = tabBarController!.tabBar.items![1]
-                //paddleBallTabBarItem.badgeValue = self.selectedLogin!
+                Settings().purchasedUid = loggedInUser.login  //new
                 let results = Settings().mySkins.filter { el in el == self.selectedLogin! }
                 if results.isEmpty {
                     Settings().mySkins.append(self.selectedLogin!)
                 }
                 userPickerView.reloadAllComponents()  //refresh pickerDataSource1
                 updateMySkins(self.selectedLogin!)
+                returnToDragIt()
             } else {
                 warnIfCreditsLow()
             }
         case 1: print(sender.tag)
-        case 2: //add selected sound track to game
+        case 2: //add selected backDrop
             if availableCredits > 9 {
                 availableCredits -= 10
-                let loggedInUser = User.login(self.selectedLogin2!, password: "foo") //new audio
+                let loggedInUser = User.login(self.selectedLogin2!, password: "foo") //new backDrop
                 print(loggedInUser)
-                //let settingsTabBarItem = tabBarController!.tabBar.items![2]
-                //settingsTabBarItem.badgeValue = self.selectedLogin2!
-                for i in 0..<audios.count {
-                    if audios[i] == self.selectedLogin2! {
-                        Settings().soundChoice = i
-                        let results = Settings().myAudios.filter { el in el == self.selectedLogin2! }
-                        if results.isEmpty {
-                            Settings().myAudios.append(self.selectedLogin2!)
-                        }
+                for i in 0..<backDrops!.count {
+                    if backDrops![i] == self.selectedLogin2! {
+                        Settings().backDropChoice = i
+                        Settings().mybackDrops.append(self.selectedLogin2!)
                     }
                 }
+                returnToDragIt()
             } else {
                 warnIfCreditsLow()
             }
-//        case 3: //add selected paddle to game
-//            if availableCredits > 9 {
-//                availableCredits -= 10
-//                if self.selectedLogin3 == nil {
-//                    pickerView(userPickerView, didSelectRow: 1, inComponent: 3)  //dizzy2
-//                }
-//                let loggedInUser = User.login(self.selectedLogin3!, password: "foo") //new Paddle
-//                print(loggedInUser)
-//                let settingsTabBarItem = tabBarController!.tabBar.items![2] 
-//                settingsTabBarItem.badgeValue = self.selectedLogin3!
-//                for i in 0..<paddles.count {
-//                    if paddles[i] == self.selectedLogin3! {
-//                        Settings().myPaddles.append(self.selectedLogin3!)
-//                    }
-//                }
-//            } else {
-//                warnIfCreditsLow()
-//            }
-//        case 4: //adjust paddle to selected paddleWidth
-//            let minPWC = self.minimumPWCredits()
-//            if availableCredits >= minPWC {
-//                availableCredits -= minPWC
-//                let loggedInUser = User.login(self.selectedLogin4!, password: "foo") //new PaddleWidth
-//                print(loggedInUser)
-//                let settingsTabBarItem = tabBarController!.tabBar.items![2]
-//                settingsTabBarItem.badgeValue = self.selectedLogin4!
-//                for i in 0..<iPadPaddleWidths.count {
-//                    if iPadPaddleWidths[i] == self.selectedLogin4! {
-//                        Settings().paddleWidthMultiplier = max(1, i)
-//                        Settings().purchasedPWM = Settings().paddleWidthMultiplier
-//                    }
-//                }
-//                if model.hasPrefix("iPad") {
-//                    if Settings().paddleWidthMultiplier == 10 { //enable once u purchace max paddle width
-//                        Settings().paddleWidthUnlockStepper = true
-//                    }
-//                } else {
-//                    if Settings().paddleWidthMultiplier == 5 {
-//                        Settings().paddleWidthUnlockStepper = true
-//                    }
-//                }
-//            } else {
-//                if availableCredits < minPWC {
-//                    alert("You have \(availableCredits) Credits!", message: "(you need \(self.minimumPWCredits()))...before buying...")
-//                }
-//            }
         case 5: //add selected credits to game
             purchase()
         default: break
         }
     }
-//    func minimumPWCredits() -> Int {
-//        if self.selectedLogin4 == nil {
-//            pickerView(userPickerView, didSelectRow: Settings().paddleWidthMultiplier, inComponent: 4) //no zero width allowed- use 1 as minimum
-//        }
-//        var minimumCredits = 10
-//        for i in 0..<iPadPaddleWidths.count {
-//            if iPadPaddleWidths[i] == self.selectedLogin4! {
-//                minimumCredits = i * 10
-//                return minimumCredits
-//            }
-//        }
-//        return 10
-//    }
     func alert(title: String, message: String) {
-        if #available(iOS 8.0, *) {
-            let myAlert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            myAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(myAlert, animated: true, completion: nil)
-        } else { // iOS 7
-            let alert: UIAlertView = UIAlertView()
-            alert.delegate = self
-            alert.title = title
-            alert.message = message
-            alert.addButtonWithTitle("OK")
-            alert.show()
-        }
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        myAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(myAlert, animated: true, completion: nil)
     }
     func chosenNumberOfCredits() -> Int {
         if self.selectedCreditIndex == 0 {
@@ -601,88 +380,9 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             amount = cost[credits]!
             print(amount)
             helper.pay4Credits(credits)
+            earnCoin()
         }
     }
-    let audios = ["audio77",
-        "audio66",
-        "audio90",
-        "audio96",
-        "audio125",
-        "audio190",
-        "audio209",
-        "audio223",
-        "audio3",
-        "audio7",
-        "audio78"]
-    let ballSkins = ["globe40",
-        "tennis40",
-        "vectorA40",
-        "vectorB40",
-        "wheelOf40",
-//        "8ball",
-//        "asian",
-//        "art160",
-//        "asian33",
-//        "baseball",
-//        "basketball",
-//        "bicycle160",
-//        "blue160",
-//        "bully72",
-//        "burning160",
-//        "c14",
-//        "cd114",
-//        "cd115",
-//        "citroen160",
-//        "cool160",
-//        "cool275",
-//        "cufi100",
-//        "cvision160",
-//        "dizzy2",
-//        "dizzy34",
-//        "edd2160",
-//        "FFWD160",
-//        "gold160",
-//        "happy160",
-//        "orangeW160",
-//        "pickle178",
-//        "pickle180",
-//        "pickle190",
-//        "pink130",
-//        "prowheel160",
-//        "radios160",
-//        "r21",
-//        "ring",
-//        "ship160",
-//        "skateW160",
-//        "soccer",
-//        "soccer206",
-        "starDavid",
-//        "star18",
-        "star57",
-        "steer160",
-        "sun56",
-        "sun94"]
-//        "tennis80",
-//        "toyota160",
-//        "u157",
-//        "u158",
-//        "u191",
-//        "u193",
-//        "u194",
-//        "u195",
-//        "u196",
-//        "u197",
-//        "u199",
-//        "u200",
-//        "u201",
-//        "u202",
-//        "u203",
-//        "u204",
-//        "u207",
-//        "vector160",
-//        "vector300",
-//        "wheel160",
-//        "wheelOf160"]
     let creditOptions = ["  $0.99  ⇢    10 Credits",
         "  $2.99  ⇢   40 Credits",
         "  $4.99  ⇢   70 Credits",
@@ -690,12 +390,69 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         " $19.99  ⇢  350 Credits",
         " $49.99  ⇢ 1000 Credits",
         " $99.99  ⇢ 2500 Credits"]
-    let hints = ["Tap [Ball] on Menu screen to pick a Video to launch",
+    let hints = ["Tap any green [Ball] to unlock a Video",
         "Drag RedBlock into center circle to play selected video!",
-        "Tap [Demo] on Menu page to view website/link to demo video",
-        "Tap [Back] to return to Menu page",
-        "Tap [SHOP] to go to Shop for Ball skins, background images",
-        "Tap Continuous in <Settings> to autoStart random video...",
+        "Tap [Demo] to view on RedBlock website",
+        "Tap [Back] to return",
+        "[SHOP] for Ball skins, background images",
+        "switch <Settings> autoStart for random video...",
         "...Tap [Back] to autoStart new random video",
-        "Turn off Continuous in <Settings> to stop autoStart"]
+        "Turn off AutoStart in <Settings> to stop autoStart",
+        "Turn off Continuous in <Settings> to stop repeat video",
+        "CREDITS cost $1 per 10 Credits...better deal if you buy more",
+        "Personalized ball skins cost $0.99 or 10 Credits each",
+        "Personalized backDrops cost $0.99 or 10 Credits each",
+        "Start drag from top right corner for easier viewing",]
+    // MARK: - get coins!
+    lazy var coins: UIImageView = {
+        let size = CGSize(width: 42.0, height: 20.0)
+        let coins = UIImageView(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: size))
+        self.view.addSubview(coins)
+        return coins
+    }()
+    private var coinCount = 0
+    lazy var coinCountLabel: UILabel = { let coinCountLabel = UILabel(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: CGSize(width: 80.0, height: 20.0)))
+        coinCountLabel.font = UIFont(name: "ComicSansMS-Bold", size: 18.0)
+        coinCountLabel.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(coinCountLabel)
+        return coinCountLabel
+    }()
+    lazy var largeCoin: UIImageView = {
+        let size = CGSize(width: 100.0, height: 100.0)
+        let coin = UIImageView(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: size))
+        self.view.addSubview(coin)
+        return coin
+    }()
+    func resetCoins() {
+        let midx = view.bounds.midX
+        coins.center = CGPoint(x: (midx - 60.0), y: (view.bounds.minY + 12.0))
+        coinCountLabel.center = CGPoint(x: (midx + 60.0), y: (view.bounds.minY + 10.0))
+        largeCoin.center = CGPoint(x: midx, y: view.bounds.midY)
+    }
+    func earnCoin() {  //show available credits
+        self.coinCount += self.availableCredits  //move first because of annimation delay
+        //prepare for annimation
+        largeCoin.image = UIImage(named: "1000CreditsSWars1.png")
+        resetCoins()
+        largeCoin.alpha = 1
+        largeCoin.center.y = view.bounds.minY //move off screen but alpha = 1
+        UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
+            self.largeCoin.alpha = 0
+            }, completion: nil)
+        //prepare for annimation
+        coinCountLabel.alpha = 0
+        coinCountLabel.center.y = view.bounds.maxY //move off screen
+        if let image = UIImage(named: "1000Credits2-20.png") {
+            coins.image = image
+            coins.alpha = 0
+            coins.center.y = view.bounds.maxY //move off screen
+            UIView.animateWithDuration(4.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
+                self.coinCountLabel.text = "\(self.availableCredits)"
+                self.resetCoins()
+                self.coins.alpha = 1
+                self.coinCountLabel.alpha = 1
+                }, completion: nil)
+        }
+    }
+
 }

@@ -5,6 +5,86 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>DragIt Version</string>
+		</dict>
+		<dict>
+			<key>AutocapitalizationType</key>
+			<string>Words</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>IsSecure</key>
+			<false/>
+			<key>Key</key>
+			<string>BouncerViewController.Version</string>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>Title</key>
+			<string>Release:  1.0</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>AutoStart</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>BouncerViewController.Auto.Start</string>
+			<key>Title</key>
+			<string>Enabled</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Continuous Repeat</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>BouncerViewController.RepeatVideo</string>
+			<key>Title</key>
+			<string>Enabled</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Preferred Video</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>AutocapitalizationType</key>
+			<string>Words</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>IsSecure</key>
+			<false/>
+			<key>Key</key>
+			<string>BouncerViewController.FavVideo</string>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>Title</key>
+			<string>A - I ( eg. C ) </string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string>Random Block Color</string>
 			<key>Type</key>
@@ -64,48 +144,6 @@
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Preferred Video</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>AutocapitalizationType</key>
-			<string>Words</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<false/>
-			<key>Key</key>
-			<string>BouncerViewController.FavVideo</string>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>Title</key>
-			<string>A - I ( eg. C ) </string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Continuous Repeat</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>BouncerViewController.RepeatVideo</string>
-			<key>Title</key>
-			<string>Enabled</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
 	</array>
-	<key>StringsTable</key>
-	<string>Root</string>
 </dict>
 </plist>
