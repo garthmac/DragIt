@@ -2,7 +2,7 @@
 //  IAPHelper.swift
 //  DragIt
 //
-//  Created by iMac 27 on 10/20/15.
+//  Created by iMac 27 on 10/20/15...addCreditz.1000
 //  Copyright (c) 2015 Garth MacKenzie. All rights reserved.
 //
 
@@ -17,7 +17,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
         if(SKPaymentQueue.canMakePayments()) {
             if list.isEmpty {
                 print("IAP is enabled, loading")
-                let productIDs = NSSet(objects: "com.garthmackenzie.DragIt.addCredits.10", "com.garthmackenzie.DragIt.addCredits.40", "com.garthmackenzie.DragIt.addCredits.70", "com.garthmackenzie.DragIt.addCredits.150", "com.garthmackenzie.DragIt.addCredits.350", "com.garthmackenzie.DragIt.addCredits.1000", "com.garthmackenzie.DragIt.addCredits.2500")
+                let productIDs = NSSet(objects: "com.garthmackenzie.DragIt.addCredits.10", "com.garthmackenzie.DragIt.addCredits.40", "com.garthmackenzie.DragIt.addCredits.70", "com.garthmackenzie.DragIt.addCredits.150", "com.garthmackenzie.DragIt.addCredits.350", "com.garthmackenzie.DragIt.addCreditz.1000", "com.garthmackenzie.DragIt.addCredits.2500")
                 let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productIDs as! Set<String>)
                 request.delegate = self
                 request.start()
@@ -112,7 +112,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
             case "com.garthmackenzie.DragIt.addCredits.350":
                 print("add 350 credits to account")
                 addCredits(350)
-            case "com.garthmackenzie.DragIt.addCredits.1000":
+            case "com.garthmackenzie.DragIt.addCreditz.1000":
                 print("add 1000 credits to account")
                 addCredits(1000)
             case "com.garthmackenzie.DragIt.addCredits.2500":
@@ -152,7 +152,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
                 case "com.garthmackenzie.DragIt.addCredits.350":
                     print("add 350 credits to account")
                     addCredits(350)
-                case "com.garthmackenzie.DragIt.addCredits.1000":
+                case "com.garthmackenzie.DragIt.addCreditz.1000":
                     print("add 1000 credits to account")
                     addCredits(1000)
                 case "com.garthmackenzie.DragIt.addCredits.2500":
