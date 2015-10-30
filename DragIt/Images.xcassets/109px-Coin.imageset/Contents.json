@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "109px-Coin.png"
+      "filename" : "109px-Coin.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

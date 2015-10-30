@@ -5,8 +5,9 @@ uses MPMoviePlayerController for 9 videos locally in Landscape only
 
 RedBlock Games DragIt Videos (New on iTunes Nov 2015) https://redblockblog.wordpress.com/marketing/
 FREE download...
-   features NASA Mars trip, Cymatics Science and 7 Christian videos locally in Landscape only
+   features NASA Mars trip, Cymatics Science and 7 Christian music videos locally in Landscape only
 Simply drag RedBlock to center goal area to earn coin and unlock video!
+Demo link to Vimeo... https://player.vimeo.com/video/143505343?autoplay=1
 
 uses Settings.bundle
 - tap FavVideo vs. Random selection with repeat and/or autoStart
@@ -14,8 +15,7 @@ uses Settings.bundle
 - optional continuous playback/repeat
 - optional random colored vs alpha bouncing red block
 - sliders for bouncer elasticity and opacity
-- features IAP for personalized ballSkins and backDrop images
-- Demo link to Vimeo... https://player.vimeo.com/video/143505343?autoplay=1
+- features IAP for personalized ballSkins and backDrop images...shared secret da4b060568b44e02aa34cff99e740047
 
 Xcode 7.1
 

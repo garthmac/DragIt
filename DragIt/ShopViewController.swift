@@ -380,7 +380,6 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             amount = cost[credits]!
             print(amount)
             helper.pay4Credits(credits)
-            earnCoin()
         }
     }
     let creditOptions = ["  $0.99  ⇢    10 Credits",
@@ -402,57 +401,6 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         "CREDITS cost $1 per 10 Credits...better deal if you buy more",
         "Personalized ball skins cost $0.99 or 10 Credits each",
         "Personalized backDrops cost $0.99 or 10 Credits each",
-        "Start drag from top right corner for easier viewing",]
-    // MARK: - get coins!
-    lazy var coins: UIImageView = {
-        let size = CGSize(width: 42.0, height: 20.0)
-        let coins = UIImageView(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: size))
-        self.view.addSubview(coins)
-        return coins
-    }()
-    private var coinCount = 0
-    lazy var coinCountLabel: UILabel = { let coinCountLabel = UILabel(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: CGSize(width: 80.0, height: 20.0)))
-        coinCountLabel.font = UIFont(name: "ComicSansMS-Bold", size: 18.0)
-        coinCountLabel.textAlignment = NSTextAlignment.Center
-        self.view.addSubview(coinCountLabel)
-        return coinCountLabel
-    }()
-    lazy var largeCoin: UIImageView = {
-        let size = CGSize(width: 100.0, height: 100.0)
-        let coin = UIImageView(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: size))
-        self.view.addSubview(coin)
-        return coin
-    }()
-    func resetCoins() {
-        let midx = view.bounds.midX
-        coins.center = CGPoint(x: (midx - 60.0), y: (view.bounds.minY + 12.0))
-        coinCountLabel.center = CGPoint(x: (midx + 60.0), y: (view.bounds.minY + 10.0))
-        largeCoin.center = CGPoint(x: midx, y: view.bounds.midY)
-    }
-    func earnCoin() {  //show available credits
-        self.coinCount += self.availableCredits  //move first because of annimation delay
-        //prepare for annimation
-        largeCoin.image = UIImage(named: "1000CreditsSWars1.png")
-        resetCoins()
-        largeCoin.alpha = 1
-        largeCoin.center.y = view.bounds.minY //move off screen but alpha = 1
-        UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-            self.largeCoin.alpha = 0
-            }, completion: nil)
-        //prepare for annimation
-        coinCountLabel.alpha = 0
-        coinCountLabel.center.y = view.bounds.maxY //move off screen
-        if let image = UIImage(named: "1000Credits2-20.png") {
-            coins.image = image
-            coins.alpha = 0
-            coins.center.y = view.bounds.maxY //move off screen
-            UIView.animateWithDuration(4.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-                self.coinCountLabel.text = "\(self.availableCredits)"
-                self.resetCoins()
-                self.coins.alpha = 1
-                self.coinCountLabel.alpha = 1
-                }, completion: nil)
-        }
-    }
+        "Start drag from top right corner for easier viewing"]
 
 }

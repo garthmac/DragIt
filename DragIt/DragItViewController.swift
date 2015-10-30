@@ -344,7 +344,6 @@ class DragItViewController: UIViewController {
         "cufi40",
         "edd40",
         "globe40",
-        "starDavid40",
         "vectorA40",
         "vectorB40"]
     // MARK: - get coins!

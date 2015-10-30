@@ -47,7 +47,7 @@ struct User {
             User(name: "Madison", company: "World", highScore: "18,222", highScoreDate: "2015-05-11", login: "tennis40", password: "foo"),
             User(name: "John", company: "Stanford", highScore: "999", highScoreDate: "2015-06-20", login: "vectorA40", password: "foo"),
             User(name: "Bad", company: "Criminals, Inc.", highScore: "6,666", highScoreDate: "2015-06-06", login: "vectorB40", password: "foo"),
-            User(name: "Good", company: "Rescue, Inc.", highScore: "8,888", highScoreDate: "2015-06-21", login: "wheelOf40", password: "foo"),
+            User(name: "Good", company: "Rescue, Inc.", highScore: "8,888", highScoreDate: "2015-06-21", login: "cufi40", password: "foo"),
             User(name: "Johny", company: "Apple", highScore: "10,222", highScoreDate: "2015-04-01", login: "arrow40", password: "foo"),
             User(name: "Good", company: "Rescue, Inc.", highScore: "8,888", highScoreDate: "2015-06-21", login: "edd40", password: "foo"),
             User(name: "John", company: "Stanford", highScore: "999", highScoreDate: "2015-06-20", login: "burning40", password: "foo"),
