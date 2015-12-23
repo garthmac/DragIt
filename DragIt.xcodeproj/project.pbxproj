@@ -11,6 +11,10 @@
 		711B431C1BD41A8800C09A7D /* digital_art_1024x1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 711B431B1BD41A8800C09A7D /* digital_art_1024x1024.jpg */; };
 		711B43201BD41AAF00C09A7D /* Outer_space_planets_earth_men_fantasy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 711B431D1BD41AAF00C09A7D /* Outer_space_planets_earth_men_fantasy.jpg */; };
 		711B432A1BD41F2100C09A7D /* space_3d_art_planet_earth_apocalyptic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 711B43291BD41F2100C09A7D /* space_3d_art_planet_earth_apocalyptic.jpg */; };
+		7123229A1C29E593005E7787 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712322991C29E593005E7787 /* MediaPlayer.framework */; };
+		7123229C1C29E5BB005E7787 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7123229B1C29E5BB005E7787 /* CoreMotion.framework */; };
+		7123229E1C2A0225005E7787 /* UIColorCrayons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7123229D1C2A0225005E7787 /* UIColorCrayons.swift */; };
+		712322A01C2A1421005E7787 /* IconiPad835@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7123229F1C2A1421005E7787 /* IconiPad835@2x.png */; };
 		713B215D1BDF467500A32FD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713B215C1BDF467500A32FD3 /* StoreKit.framework */; };
 		714076CE1BD4813500B24244 /* IMG_3562.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 714076BB1BD4813500B24244 /* IMG_3562.jpg */; };
 		714076CF1BD4813500B24244 /* badge-git-real-5d91905b69d46286cab389797ea81983.png in Resources */ = {isa = PBXBuildFile; fileRef = 714076BC1BD4813500B24244 /* badge-git-real-5d91905b69d46286cab389797ea81983.png */; };
@@ -98,6 +102,10 @@
 		711B431B1BD41A8800C09A7D /* digital_art_1024x1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = digital_art_1024x1024.jpg; sourceTree = "<group>"; };
 		711B431D1BD41AAF00C09A7D /* Outer_space_planets_earth_men_fantasy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Outer_space_planets_earth_men_fantasy.jpg; sourceTree = "<group>"; };
 		711B43291BD41F2100C09A7D /* space_3d_art_planet_earth_apocalyptic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space_3d_art_planet_earth_apocalyptic.jpg; sourceTree = "<group>"; };
+		712322991C29E593005E7787 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		7123229B1C29E5BB005E7787 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		7123229D1C2A0225005E7787 /* UIColorCrayons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorCrayons.swift; sourceTree = "<group>"; };
+		7123229F1C2A1421005E7787 /* IconiPad835@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconiPad835@2x.png"; path = "Images.xcassets/AppIcon.appiconset/IconiPad835@2x.png"; sourceTree = "<group>"; };
 		713B215C1BDF467500A32FD3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		714076BB1BD4813500B24244 /* IMG_3562.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_3562.jpg; sourceTree = "<group>"; };
 		714076BC1BD4813500B24244 /* badge-git-real-5d91905b69d46286cab389797ea81983.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badge-git-real-5d91905b69d46286cab389797ea81983.png"; sourceTree = "<group>"; };
@@ -174,6 +182,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7123229C1C29E5BB005E7787 /* CoreMotion.framework in Frameworks */,
+				7123229A1C29E593005E7787 /* MediaPlayer.framework in Frameworks */,
 				713B215D1BDF467500A32FD3 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +208,8 @@
 		716336BB1BD0438600520A29 = {
 			isa = PBXGroup;
 			children = (
+				7123229B1C29E5BB005E7787 /* CoreMotion.framework */,
+				712322991C29E593005E7787 /* MediaPlayer.framework */,
 				713B215C1BDF467500A32FD3 /* StoreKit.framework */,
 				716336C61BD0438600520A29 /* DragIt */,
 				716336F51BD044F000520A29 /* Assets */,
@@ -228,6 +240,7 @@
 				716337041BD06AF400520A29 /* BouncerBehavior.swift */,
 				716337051BD06AF400520A29 /* BouncerViewController.swift */,
 				716336FC1BD04BCB00520A29 /* DragItViewController.swift */,
+				7123229D1C2A0225005E7787 /* UIColorCrayons.swift */,
 				716336D31BD0438600520A29 /* Info.plist */,
 				7163374D1BD1B1C200520A29 /* CircleView.swift */,
 				7173EE141BD6BC7500B35EC5 /* IAPHelper.swift */,
@@ -295,6 +308,7 @@
 				716337221BD06B9000520A29 /* Icon-60@3x.png */,
 				716337271BD06B9000520A29 /* Icon-76.png */,
 				716337281BD06B9000520A29 /* Icon-76@2x.png */,
+				7123229F1C2A1421005E7787 /* IconiPad835@2x.png */,
 				716337181BD06B9000520A29 /* Icon-Small-40.png */,
 				716337191BD06B9000520A29 /* Icon-Small-40@2x.png */,
 				71D8C9C21BDBD607007AA710 /* Icon-Small-40@3x.png */,
@@ -463,6 +477,7 @@
 				716337481BD0B88500520A29 /* How_to_Get_to_Mars._Very_Cool!_HD.mp4 in Resources */,
 				71D8C9C71BDBD7F6007AA710 /* Icon-Small@3x.png in Resources */,
 				71D8C9D11BDC09E0007AA710 /* bluePlanet.jpg in Resources */,
+				712322A01C2A1421005E7787 /* IconiPad835@2x.png in Resources */,
 				716337491BD0B88500520A29 /* Matthew_24.mp4 in Resources */,
 				7163374A1BD0B88500520A29 /* Phil Wickham - This Is Amazing Grace.mp4 in Resources */,
 				71D8C9CF1BDBE279007AA710 /* heavensDeclare.jpg in Resources */,
@@ -537,6 +552,7 @@
 				716337061BD06AF400520A29 /* BouncerBehavior.swift in Sources */,
 				716337071BD06AF400520A29 /* BouncerViewController.swift in Sources */,
 				716336C81BD0438600520A29 /* AppDelegate.swift in Sources */,
+				7123229E1C2A0225005E7787 /* UIColorCrayons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,7 +691,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DragIt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.garthmackenzie.DragIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -690,7 +706,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DragIt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.garthmackenzie.DragIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";

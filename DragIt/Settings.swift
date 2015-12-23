@@ -33,7 +33,7 @@ class Settings {
         set { defaults.setObject(newValue, forKey: Const.HintIndexKey) }
     }
     var mybackDrops: [String] {
-        get { return defaults.objectForKey(Const.BackDropsKey) as? [String] ?? ["digital_art_1024x1024"]}
+        get { return defaults.objectForKey(Const.BackDropsKey) as? [String] ?? ["digital_art_1024x1024.jpg"]}
         set { defaults.setObject(newValue, forKey: Const.BackDropsKey) }
     }
     var mySkins: [String] {
@@ -41,7 +41,7 @@ class Settings {
         set { defaults.setObject(newValue, forKey: Const.SkinsKey) }
     }
     var purchasedUid: String? {
-        get { return defaults.objectForKey(Const.PurchasedUidKey) as? String ?? "" }
+        get { return defaults.objectForKey(Const.PurchasedUidKey) as? String ?? "" }  //causes warning Invalid asset name supplied:  no worries
         set { defaults.setObject(newValue, forKey: Const.PurchasedUidKey) }
     }
     var changed: Bool {

@@ -17,18 +17,26 @@ uses Settings.bundle
 - sliders for bouncer elasticity and opacity
 - features IAP for personalized ballSkins and backDrop images...shared secret da4b060568b44e02aa34cff99e740047
 
-Xcode 7.1
+Xcode 7.2
 
-Swift 2
+Swift 2.2
 
-Deployment Target iOS 8.3
-Base SDK = iOS 9.0
+Deployment Target iOS 9.0 ver 1.1 added ball/video names with links
+Base SDK = iOS 9.2
 
 Asset Credits
 -------------------------------------------------
 
 Phil Wickham songs and other soundtracks:
-https://www.youtube.com/
+"https://www.youtube.com/user/PhilWickhamVEVO","
+"https://www.youtube.com/watch?v=WJ29WAglfWA",
+"https://www.youtube.com/user/hillsonglive",
+"https://www.youtube.com/watch?v=MBdkb8qk-As",
+"https://www.youtube.com/watch?v=0xwzItqYmII&index=4&list=RDm1Be0qJw9ZE",
+"https://www.youtube.com/watch?v=qOkImV2cJDg&list=RDm1Be0qJw9ZE&index=29",
+"https://www.youtube.com/user/philwickham",
+"https://www.youtube.com/watch?v=Ah0uydqMYhE",
+"https://www.youtube.com/watch?v=qOkImV2cJDg&list=RDm1Be0qJw9ZE&index=29"
 
 youtube clip converter:
 http://www.clipconverter.cc

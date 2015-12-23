@@ -33,9 +33,10 @@ class DragItViewController: UIViewController {
 
     var circleViewDict = [String:CircleView]()
     let videoTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
-    let degrees: [Double] = [270, 310, 350, 30, 70, 110, 150, 190, 230]
+    let degrees: [Double] = [270, 310, 350, 30, 70, 110, 150, 190, 230]  //start at top clockwise
     var url: NSURL?
     var creditsURL: NSURL?
+    var youTubeURL: NSURL?
     @IBAction func demo(sender: UIButton?) {
         if url != nil {
             UIApplication.sharedApplication().openURL(url!)
@@ -107,7 +108,7 @@ class DragItViewController: UIViewController {
     func addCircleView(index: Int) {
         let circleWidth = CGFloat(40)   //(25 + (arc4random() % 50))
         let circleHeight = circleWidth
-        //start at bottom = 270 degrees
+        //start at top clockwise = 270 degrees
         let centerPoint = pointOnCircleEdge(ringView!.bounds.width/2, angleInDegrees: degrees[index])
         // Create a new CircleView
         let circleView = CircleView(frame: CGRectMake(centerPoint.x - circleWidth/2, centerPoint.y - circleWidth/2, circleWidth, circleHeight))
@@ -259,13 +260,44 @@ class DragItViewController: UIViewController {
                         if videoTag != key {
                             if videoTag != "Z" {
                                 circleViewDict[videoTag]!.animateEraseCircle(2.0)
+                                //erase old selection title
+                                let idx = videoTags.indexOf(videoTag)
+                                let title = videoNames[idx!]
+                                for v in view.subviews {
+                                    if let old = v as? UIButton {
+                                        if old.titleLabel?.text == title {
+                                            old.removeFromSuperview()
+                                        }
+                                    }
+                                }
                             }
                             videoTag = key
                             NSUserDefaults.standardUserDefaults().setObject(videoTag, forKey: BouncerViewController.Constants.FavVideo)
                             circle.animateCircle(2.0)
+                            //add title
+                            let idx = videoTags.indexOf(key)
+                            let title = videoNames[idx!]
+                            let button = UIButton(frame: CGRect(origin: circle.center, size: CGSize(width: title.characters.count * 10, height: 30)))
+                            button.tag = idx!
+                            button.setTitle(title, forState: .Normal)
+                            if Settings().mybackDrops.last == "Black_hole2048.jpg" {
+                                button.setTitleColor(UIColor.crayons_aquaColor(), forState: .Normal)
+                            } else {
+                                button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                            }
+                            button.titleLabel?.font = UIFont.systemFontOfSize(15, weight: UIFontWeightBold)
+                            button.addTarget(self, action: "gotoYouTube:", forControlEvents: .TouchUpInside)
+                            view.addSubview(button)
                         }
                     }
                 }
+            }
+        }
+    }
+    func gotoYouTube(sender: UIButton?) {
+        if let idx = sender?.tag {
+            if let url = NSURL(string: externalURLs[idx]) {
+                UIApplication.sharedApplication().openURL(url)
             }
         }
     }
@@ -346,6 +378,24 @@ class DragItViewController: UIViewController {
         "globe40",
         "vectorA40",
         "vectorB40"]
+    let videoNames = ["You're Beautiful",
+        "  CYMATICS",
+        "Cornerstone",
+        "Greater than All",
+        "Get to Mars",
+        " Matthew 24",
+        "This Is Amazing Grace",
+        "Hillsong Oceans",
+        "My Chains are Gone"]
+    let externalURLs = ["https://www.youtube.com/user/PhilWickhamVEVO",
+        "https://www.youtube.com/watch?v=WJ29WAglfWA",
+        "https://www.youtube.com/user/hillsonglive",
+        "https://www.youtube.com/watch?v=MBdkb8qk-As",
+        "https://www.youtube.com/watch?v=0xwzItqYmII&index=4&list=RDm1Be0qJw9ZE",
+        "https://www.youtube.com/watch?v=qOkImV2cJDg&list=RDm1Be0qJw9ZE&index=29",
+        "https://www.youtube.com/user/philwickham",
+        "https://www.youtube.com/watch?v=Ah0uydqMYhE",
+        "https://www.youtube.com/watch?v=qOkImV2cJDg&list=RDm1Be0qJw9ZE&index=29"]
     // MARK: - get coins!
     lazy var coins: UIImageView = {
         let size = CGSize(width: 42.0, height: 20.0)
